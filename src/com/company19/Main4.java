@@ -37,7 +37,7 @@ public class Main4 {
             }
             if (n * 2 <= 100000 && map[n * 2] == 0 && !map1[n * 2]) {
                 queue.offer(n * 2);
-                map[n * 2] =  map[n];
+                map[n * 2] = map[n];
                 map1[n * 2] = true;
             }
             if (0 <= n - 1 && map[n - 1] == 0 && !map1[n - 1]) {

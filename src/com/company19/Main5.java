@@ -41,10 +41,13 @@ public class Main5 {
 
         while (!queue.isEmpty()) {
             int current = queue.poll();
-            // now 방문 시간이 최소 시간보다 크면 뒤는 더 볼 필요 없음
+            // current 방문 시간이 최소 시간보다 크면 뒤는 더 볼 필요 없음
             if (result < move[current]) {
                 return;
             }
+
+            // 현재 값이 목표치의 값인데
+            // 현재 방문 시간이 최소 시간보다 작을 경우에 카운트
             if (move[current] <= result && current == M) {
                 result = move[current];
                 count++;
@@ -61,6 +64,7 @@ public class Main5 {
                 // 범위가 안쪽인 상황에서
                 if (0 <= next && next <= 100000) {
                     // 다음 방문 할 곳에 방문하지 않았거나
+                    // 이미 방문한 곳이어도 같은 시간에 방문했다면 (time[next] == time[now] + 1)
                     if (move[next] == 0 || move[next] == move[current] + 1) {
                         move[next] = move[current] + 1;
                         parent[next] = current;

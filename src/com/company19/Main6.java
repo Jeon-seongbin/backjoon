@@ -1,69 +1,64 @@
 package com.company19;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
+// https://www.acmicpc.net/problem/13913
 public class Main6 {
+
+    static int[] map = new int[1000000];
+    static int[] origin = new int[1000000];
+    static boolean[] visited = new boolean[1000000];
+
     public static void main(String[] args) throws IOException {
-        int max = 1000000;
-        int[] time = new int[max];
-        int[] dist = new int[max];
-
-        boolean[] visit = new boolean[max];
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int x = Integer.parseInt(st.nextToken());
-        int y = Integer.parseInt(st.nextToken());
-        visit[x] = true;
 
-        Queue<Integer> q = new LinkedList<>();
-        q.add(x);
-        while (!q.isEmpty()) {
-            int n = q.remove();
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(N);
 
-            if (n == y) {
-                break;
+        visited[N] = true;
+        while (!queue.isEmpty()) {
+//            1초 후에 X-1 또는 X+1로 이동하게 된다. 순간이동을 하는 경우에는 1초 후에 2*X의 위치로 이동하게 된다.
+            int n = queue.remove();
+            if (n + 1 < 1000000 && !visited[n + 1]) {
+                map[n + 1] = map[n] + 1;
+                origin[n + 1] = n;
+                visited[n + 1] = true;
+                queue.offer(n + 1);
             }
 
-            if (n + 1 < max && !visit[n + 1]) {
-                visit[n + 1] = true;
-                time[n + 1] = time[n] + 1;
-                dist[n + 1] = n;
-                q.add(n + 1);
+            if (0 <= n - 1 && !visited[n - 1]) {
+                map[n - 1] = map[n] + 1;
+                origin[n - 1] = n;
+                visited[n - 1] = true;
+                queue.offer(n - 1);
             }
-
-            if (0 <= n - 1 && !visit[n - 1]) {
-                visit[n - 1] = true;
-                time[n - 1] = time[n] + 1;
-                dist[n - 1] = n;
-                q.add(n - 1);
-            }
-
-            if (n * 2 < max && !visit[n * 2]) {
-                visit[n * 2] = true;
-                time[n * 2] = time[n] + 1;
-                dist[n * 2] = n;
-                q.add(n * 2);
+            if (n * 2 < 1000000 && !visited[n * 2]) {
+                map[n * 2] = map[n] + 1;
+                origin[n * 2] = n;
+                visited[n * 2] = true;
+                queue.offer(n * 2);
             }
         }
 
-        Stack<Integer> stack = new Stack<>();
-        stack.add(y);
-        int tempY = y;
+        System.out.println(map[K]);
 
-        while (tempY != x) {
-            tempY = dist[tempY];
+        Stack<Integer> stack = new Stack<>();
+        stack.add(K);
+        int tempY = K;
+
+        while (tempY != N) {
+            tempY = origin[tempY];
             stack.add(tempY);
         }
 
-        System.out.println(time[y]);
         while (!stack.isEmpty()) {
             int temp = stack.pop();
             System.out.print(temp + " ");
         }
-        System.out.println();
+        br.close();
     }
 }

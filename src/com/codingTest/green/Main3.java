@@ -1,4 +1,4 @@
-package com.rine;
+package com.codingTest.green;
 
 public class Main3 {
     /*

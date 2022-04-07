@@ -1,4 +1,4 @@
-package com.rine;
+package com.codingTest.green;
 
 import java.util.ArrayList;
 import java.util.HashMap;

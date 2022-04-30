@@ -14,10 +14,7 @@ public class Main5 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-//        if(N == 2){
-//            bw.write("1");
-//            return;
-//        }
+
         arr = new boolean[N + 1];
 
         int count = 0;

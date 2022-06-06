@@ -9,22 +9,19 @@ public class Main5 {
     public static int N, M;
     public static int[] result;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String... args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-
         result = new int[M];
-        dfs(1,0);
-        br.close();
+        backTracking(1, 0);
     }
 
-    public static void dfs(int at, int depth) {
-        if (depth == M) {
-            for (int i : result) {
-                System.out.print(i + " ");
+    public static void backTracking(int at, int depth) {
+        if (M == depth) {
+            for (int val : result) {
+                System.out.print(val + " ");
             }
             System.out.println();
             return;
@@ -32,8 +29,7 @@ public class Main5 {
 
         for (int i = at; i <= N; i++) {
             result[depth] = i;
-            dfs(i + 1, depth + 1);
+            backTracking(i + 1, depth + 1);
         }
-
     }
 }

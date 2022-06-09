@@ -1,4 +1,4 @@
-package com.acmicpc.company28;
+package com.paiza.b_class;
 
 import java.io.BufferedReader;
 import java.io.IOException;

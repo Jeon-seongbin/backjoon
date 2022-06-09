@@ -1,4 +1,4 @@
-package com.acmicpc.company28;
+package com.paiza.a_class;
 
 import java.io.*;
 import java.util.LinkedList;

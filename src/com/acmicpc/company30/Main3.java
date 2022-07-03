@@ -9,22 +9,22 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main3 {
+    public static int left = 0, right = 0;
     public static int N, M;
-    public static int start, end, max;
-    public static boolean[] visited;
-    public static ArrayList<ArrayList<Point1939>> link = new ArrayList<>();
+
+    public static int start, end;
+    public static boolean[] isVisited;
+    public static ArrayList<ArrayList<Point1939>> arrayList = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i <= N; i++) {
-            link.add(new ArrayList<>());
+        for (int i = 0; i < N + 1; i++) {
+            arrayList.add(new ArrayList<>());
         }
-        max = 0;
 
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
@@ -32,47 +32,46 @@ public class Main3 {
             int b = Integer.parseInt(st.nextToken());
             int c = Integer.parseInt(st.nextToken());
 
-            link.get(a).add(new Point1939(b, c));
-            link.get(b).add(new Point1939(a, c));
-            max = Math.max(c, max);
+            arrayList.get(a).add(new Point1939(b, c));
+            arrayList.get(b).add(new Point1939(a, c));
+            right = Math.max(right, c);
         }
 
         st = new StringTokenizer(br.readLine());
         start = Integer.parseInt(st.nextToken());
         end = Integer.parseInt(st.nextToken());
 
-        int right = max;
-        int left = 0;
-
-        // 코스트의 중간을 잡고
+        // cost 크기를 체크
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            visited = new boolean[N + 1];
-            if (bfs(start, end, mid)) {
+            isVisited = new boolean[N + 1];
+            if (bfs(mid)) {
                 left = mid + 1;
             } else {
                 right = mid - 1;
             }
-
         }
         System.out.println(right);
     }
 
-    public static boolean bfs(int start, int end, int cost) {
+    public static boolean bfs(int cost) {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(start);
-        visited[start] = true;
+        isVisited[start] = true;
 
         while (!queue.isEmpty()) {
-            int now = queue.poll();
-            if (end == now) {
+            int nowPoint = queue.poll();
+            if (nowPoint == end) {
                 return true;
             }
-
-            for (Point1939 next : link.get(now)) {
-                if (!visited[next.destination] && cost <= next.cost) {
-                    visited[next.destination] = true;
-                    queue.add(next.destination);
+            ArrayList<Point1939> nextPoints = arrayList.get(nowPoint);
+            for (Point1939 nextPoint : nextPoints) {
+                if (isVisited[nextPoint.nextPoint]) {
+                    continue;
+                }
+                if (cost <= nextPoint.cost) {
+                    queue.add(nextPoint.nextPoint);
+                    isVisited[nextPoint.nextPoint] = true;
                 }
             }
         }
@@ -81,11 +80,11 @@ public class Main3 {
 }
 
 class Point1939 {
-    int destination;
+    int nextPoint;
     int cost;
 
-    Point1939(int destination, int cost) {
-        this.destination = destination;
+    public Point1939(int nextPoint, int cost) {
+        this.nextPoint = nextPoint;
         this.cost = cost;
     }
 }

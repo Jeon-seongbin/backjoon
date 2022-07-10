@@ -8,39 +8,43 @@ import java.util.Collections;
 
 public class Main8 {
     public static int N;
-    static final int MAX = 100000;
     public static int[] input;
+    public static int maxG = 100_000;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
-        int[] power = new int[MAX + 1];
-        for (int i = 1; i <= MAX; i++) {
-            power[i] = i * i;
+        input = new int[maxG + 1];
+
+        for (int i = 1; i <= maxG; i++) {
+            input[i] = i * i;
         }
 
         int start = 1;
         int end = 2;
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        while (end <= MAX) {
-            long weight = power[end] - power[start];
-            if (weight == N) {
-                result.add(end);
+        ArrayList<Integer> arrayList = new ArrayList<>();
+
+        while (end <= maxG) {
+            int result = input[end] - input[start];
+            if (result == N) {
+                arrayList.add(end);
             }
-            if (weight > N) {
-                start++;
-            }
-            if (weight <= N) {
+            if (result <= N) {
                 end++;
             }
+            if (result > N) {
+                start++;
+            }
         }
-        Collections.sort(result);
-        if (result.isEmpty() || N == 1) {
+
+        Collections.sort(arrayList);
+        if (arrayList.isEmpty() || N == 1) {
             System.out.println(-1);
         } else {
-            for (int ele : result) {
+            for (int ele : arrayList) {
                 System.out.println(ele);
             }
         }
+
     }
 }

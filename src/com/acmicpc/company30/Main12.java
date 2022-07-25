@@ -8,68 +8,71 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+//양 구출
 public class Main12 {
-    public static char[] types;
-    public static int[] animalsCount;
-    public static ArrayList<Integer>[] tree;
     public static ArrayList<Integer>[] map;
+    public static ArrayList<Integer>[] tree;
+    public static char[] animalType;
+    public static int[] animalCount;
+    public static int N;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        types = new char[N + 1];
-        animalsCount = new int[N + 1];
-        tree = new ArrayList[N + 1];
+        N = Integer.parseInt(br.readLine());
+
         map = new ArrayList[N + 1];
-        for (int i = 1; i <= N; i++) {
+        tree = new ArrayList[N + 1];
+        animalType = new char[N + 1];
+        animalCount = new int[N + 1];
+
+        for (int i = 1; i <= N ; i++) {
             map[i] = new ArrayList<>();
             tree[i] = new ArrayList<>();
         }
 
-
         for (int i = 2; i <= N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-
-            String type = st.nextToken();
-            int animalCount = Integer.parseInt(st.nextToken());
-            int p = Integer.parseInt(st.nextToken());
-
-            types[i] = type.charAt(0);
-            animalsCount[i] = animalCount;
-            map[i].add(p);
-            map[p].add(i);
-
+            // S 100 3
+            animalType[i] = st.nextToken().charAt(0);
+            animalCount[i] = Integer.parseInt(st.nextToken());
+            int parent = Integer.parseInt(st.nextToken());
+            map[parent].add(i);
+            map[i].add(parent);
         }
-        makeTree(N);
+
+        makeTree();
         System.out.println(count(1));
     }
 
-    public static void makeTree(int N) {
+    public static void makeTree(){
         Queue<Integer> queue = new LinkedList<>();
         queue.add(1);
-        boolean[] visited = new boolean[N + 1];
-        visited[1] = true;
-
-        while (!queue.isEmpty()) {
+        boolean[] isVisited = new boolean[N + 1];
+        isVisited[1] = true;
+        while(!queue.isEmpty()){
             int now = queue.poll();
-            for (Integer next : map[now]) {
-                if (visited[next]) continue;
-                visited[next] = true;
+            for(int next : map[now]){
+                if(isVisited[next]){
+                    continue;
+                }
+                isVisited[next] = true;
                 tree[now].add(next);
                 queue.add(next);
             }
         }
     }
 
-    public static long count(int idx) {
+    public static long count(int N){
         long sum = 0;
-        for (int next : tree[idx]) {
-            sum += count(next);
+        for(int i = 0 ; i < tree[N].size(); i++){
+            int next = tree[N].get(i);
+           sum += count(next);
         }
-        if (types[idx] =='S')
-            return sum += animalsCount[idx];
-        else
-            return Math.max(sum - animalsCount[idx], 0);
 
+        if(animalType[N] == 'S'){
+            return sum += animalCount[N];
+        }else{
+            return Math.max(0, sum - animalCount[N]);
+        }
     }
 }

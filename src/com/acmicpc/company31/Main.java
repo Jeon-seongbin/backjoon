@@ -3,65 +3,55 @@ package com.acmicpc.company31;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 // 텀 프로젝트
 public class Main {
-    public static ArrayList<ArrayList<Integer>> arrayList;
-    public static boolean[] isVisited;
+    public static int testCase;
+    public static int[] arr;
+    public static boolean[] visited;
+    public static boolean[] finished;
+
+    public static int count;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int count = Integer.parseInt(br.readLine());
+        testCase = Integer.parseInt(br.readLine());
 
-        for (int testCount = 0; testCount < count; testCount++) {
-
-
-            int count1 = Integer.parseInt(br.readLine());
-            int resultCount = 0;
-            arrayList = new ArrayList<>();
-            isVisited = new boolean[count1 + 1];
+        for (int tc = 0; tc < testCase; tc++) {
+            int N = Integer.parseInt(br.readLine());
+            arr = new int[N + 1];
+            visited = new boolean[N + 1];
+            finished = new boolean[N + 1];
+            count = 0;
             StringTokenizer st = new StringTokenizer(br.readLine());
-            for (int i = 0; i <= count1; i++) {
-//              Integer.parseInt(st.nextToken());
-                arrayList.add(new ArrayList<>());
+
+            for (int i = 1; i < N + 1; i++) {
+                arr[i] = Integer.parseInt(st.nextToken());
             }
 
-            for (int i = 1; i <= count1; i++) {
-                int jj = Integer.parseInt(st.nextToken());
-                arrayList.get(i).add(jj);
-//                arrayList.get(jj).add(i);
-            }
-
-            for (int i = 1; i <= count1; i++) {
-                int result = 0;
-//                if (isVisited[i]) {
-//                    continue;
-//                }
-                isVisited[i] = true;
-                result = dfs(i, 0);
-                if (result == 1) {
-                    resultCount++;
+            for (int i = 1; i < N + 1; i++) {
+                if (!finished[i]) {
+                    dfs(i);
                 }
-
             }
-
-            System.out.println(resultCount);
+            System.out.println(N - count);
         }
     }
 
-    public static int dfs(int node, int depth) {
-        int result = 0;
-        for (int a : arrayList.get(node)) {
-            if (isVisited[a]) {
-
-                return depth;
-            }
-            isVisited[a] = true;
-            result = dfs(a, depth + 1);
+    public static void dfs(int now) {
+        if (visited[now]) {
+            finished[now] = true;
+            count++;
+        } else {
+            visited[now] = true;
         }
+        int next = arr[now];
 
-        return result;
+        if (!finished[next]) {
+            dfs(next);
+        }
+        visited[now] = false;
+        finished[now] = true;
     }
 }

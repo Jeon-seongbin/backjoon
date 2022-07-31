@@ -55,3 +55,5 @@ public class Main {
         finished[now] = true;
     }
 }
+
+// https://bcp0109.tistory.com/32

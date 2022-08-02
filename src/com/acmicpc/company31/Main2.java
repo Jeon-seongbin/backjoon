@@ -39,7 +39,6 @@ public class Main2 {
         dfs(1, 0);
         bw.write(Math.max(dp[1][0], dp[1][1]) + "\n");
         bw.flush();
-
     }
 
     public static void dfs(int now, int parent) {

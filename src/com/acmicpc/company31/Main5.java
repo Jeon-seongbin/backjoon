@@ -59,7 +59,6 @@ public class Main5 {
             }
             dfs(next.node, weight + next.weight);
         }
-
     }
 }
 

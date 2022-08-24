@@ -7,14 +7,12 @@ public class JumpGame55 {
 
 
     public static boolean canJump(int[] nums) {
-        int goalIndex = nums[nums.length -1];
+        int goalIndex = nums[nums.length - 1];
         for (int i = nums.length - 1; i >= 0; i--) {
-            if(i + nums[i] >= goalIndex){
+            if (i + nums[i] >= goalIndex) {
                 goalIndex = i;
             }
         }
         return goalIndex == 0;
     }
-
-
 }

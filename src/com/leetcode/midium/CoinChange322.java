@@ -19,10 +19,8 @@ public class CoinChange322 {
         for (int i = 0; i < coins.length; i++) {
             for (int j = 1; j < amount + 1; j++) {
                 if (0 <= j - coins[i]) {
+                    System.out.println(j +" "+ dp[j]);
                     dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
-                    System.out.println(j);
-                    System.out.println(dp[j]);
-
                 }
             }
         }

@@ -2,6 +2,7 @@ package com.leetcode.midium;
 
 public class CoinChangeII518 {
     public static void main(String[] args) {
+        System.out.println(coinChange(new int[]{2, 5}, 11));
     }
 
     public static int coinChange(int[] coins, int amount) {

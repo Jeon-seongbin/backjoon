@@ -13,15 +13,18 @@ public class SearchInsertPosition35 {
     public static int searchInsert(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
+        int pivot = 0;
         while (left <= right) {
-            pivot = left + (right - left) / 2;
-            if (pivot == target) {
+            pivot = right - left / 2;
+
+            if (nums[pivot] == target) {
                 return pivot;
             }
-            if (nums[pivot] < target) {
-                left = pivot + 1;
-            } else {
+
+            if (target < nums[pivot]) {
                 right = pivot - 1;
+            } else {
+                left = pivot + 1;
             }
         }
         if (nums[pivot] < target) {

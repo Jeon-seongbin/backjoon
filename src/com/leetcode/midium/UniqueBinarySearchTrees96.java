@@ -5,6 +5,7 @@ public class UniqueBinarySearchTrees96 {
 
     }
 
+    //Catalan numbers
     public int numTrees(int n) {
         if (n < 2) {
             return 1;

@@ -5,7 +5,10 @@ import java.util.List;
 
 public class MostStonesRemovedWithSameRowOrColumn947 {
     public static void main(String[] args) {
-//https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/solutions/2812465/it-s-literally-a-graph-dfs-and-union-find/
+
+        /*
+            https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/solutions/2812465/it-s-literally-a-graph-dfs-and-union-find/
+         */
     }
 
     public static int removeStones(int[][] stones) {
@@ -18,7 +21,6 @@ public class MostStonesRemovedWithSameRowOrColumn947 {
         for (int i = 0; i < stoneLength; i++) {
             graph[i] = new ArrayList<>();
         }
-
 
         for (int i = 0; i < stoneLength; i++) {
             int[] u = stones[i];

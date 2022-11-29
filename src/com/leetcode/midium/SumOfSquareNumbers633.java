@@ -11,16 +11,18 @@ public class SumOfSquareNumbers633 {
         if (c == 1) {
             return true;
         }
-        long left = 0;
-        long right = (long) Math.sqrt(c);
-        while (left <= right) {
-            long sum = left * left + right * right;
+        long low = 0;
+        long high = (long) Math.sqrt(c);
+
+        while (low <= high) {
+            long sum = low * low + high * high;
             if (sum == c) {
                 return true;
-            } else if (c < sum) {
-                right--;
+            }
+            if (sum < c) {
+                low++;
             } else {
-                left++;
+                high--;
             }
         }
         return false;

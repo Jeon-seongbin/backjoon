@@ -1,11 +1,44 @@
 package com.leetcode.midium;
 
 
+import java.util.Arrays;
+
 public class MinimumAverageDifference2256 {
     public static void main(String[] args) {
 //        System.out.println(minimumAverageDifference(new int[]{2, 5, 3, 9, 5, 3}));
 //        System.out.println(minimumAverageDifference(new int[]{1}));
         System.out.println(minimumAverageDifference(new int[]{1, 2, 3, 4, 5}));
+    }
+
+    public int minimumAverageDifference2(int[] nums) {
+        int ans = -1;
+
+        int length = nums.length;
+        long currentSum = 0;
+        long totalSum = Arrays.stream(nums).sum();
+        long min = Integer.MAX_VALUE;
+
+        for (int i = 0; i < length; i++) {
+            currentSum += nums[i];
+            long leftPartAverage = currentSum;
+            leftPartAverage /= (i + 1);
+
+            long rightAvg = totalSum - currentSum;
+
+            if (i != length - 1) {
+                rightAvg /= (length - i - 1);
+            }
+
+
+            int avgCalc = (int) Math.abs(rightAvg - leftPartAverage);
+            if (avgCalc < min) {
+                min = avgCalc;
+                ans = i;
+            }
+
+        }
+
+        return ans;
     }
 
     public int minimumAverageDifference1(int[] nums) {

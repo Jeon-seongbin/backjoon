@@ -25,8 +25,8 @@ public class Main_1826 {
             int pointFuel = Integer.parseInt(st.nextToken());
             int[] c = new int[]{dist, pointFuel};
             q.add(c);
-
         }
+
         StringTokenizer st = new StringTokenizer(br.readLine());
         town = Integer.parseInt(st.nextToken());
         curFuel = Integer.parseInt(st.nextToken());

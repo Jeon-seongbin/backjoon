@@ -14,7 +14,6 @@ public class Main_1826 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         q = new PriorityQueue<>((o1, o2) -> o1[0] - o2[0]); // 거리순 heap
         fuelQ = new PriorityQueue<>(Collections.reverseOrder());
         int n = Integer.parseInt(br.readLine());

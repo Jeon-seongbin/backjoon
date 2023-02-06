@@ -49,7 +49,7 @@ public class Main_2688 {
             bw.write("\n");
         }
         bw.flush();
-
-
+        bw.close();
+        br.close();
     }
 }

@@ -42,6 +42,11 @@ public class MinimumFuelCostToReportToTheCapital2477 {
 
         if (now > 0) {
             answer += (people + seats - 1) / seats;
+            System.out.println("--");
+            System.out.println("now:" + now);
+            System.out.println(answer);
+            System.out.println("--");
+
         }
         return people;
     }

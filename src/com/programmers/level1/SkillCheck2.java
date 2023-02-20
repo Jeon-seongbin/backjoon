@@ -22,9 +22,6 @@ public class SkillCheck2 {
             }
             answer[i] = minLength;
         }
-
-
         return answer;
     }
-
 }

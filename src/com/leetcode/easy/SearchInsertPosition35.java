@@ -1,35 +1,37 @@
 package com.leetcode.easy;
 
 public class SearchInsertPosition35 {
-    public static int pivot = 0;
 
     public static void main(String[] args) {
         int[] nums = {1, 3, 5, 6};
-        int target = 2;
-        searchInsert(nums, target);
-        System.out.println(pivot);
+        int target = 9;
+        int result = searchInsert(nums, target);
+        System.out.println(result);
     }
 
     public static int searchInsert(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length - 1;
-        int pivot = 0;
-        while (left <= right) {
-            pivot = right - left / 2;
 
-            if (nums[pivot] == target) {
-                return pivot;
+        if (nums[nums.length - 1] < target) {
+            return nums.length;
+        }
+
+        int low = 0;
+        int high = nums.length - 1;
+        int result = 0;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (nums[mid] == target) {
+                result = mid;
+                break;
             }
-
-            if (target < nums[pivot]) {
-                right = pivot - 1;
+            if (nums[mid] < target) {
+                low = mid + 1;
             } else {
-                left = pivot + 1;
+                high = mid - 1;
+                result = high;
+
             }
         }
-        if (nums[pivot] < target) {
-            pivot++;
-        }
-        return pivot;
+        return result;
     }
 }

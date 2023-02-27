@@ -4,7 +4,7 @@ public class Hotel {
     public static void main(String[] args) {
 
     }
-cce
+
     public static int CLEAN_TIME = 10;
     public static int HOUR = 60;
     public static int maxTime = 1_450;

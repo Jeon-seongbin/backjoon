@@ -1,15 +1,9 @@
 package com.codingTest.cocone;
 
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Main2 {
     public static void main(String[] args) {
-
-
-//        System.out.println(gIndex);  // 출력 결과: 5
-//        solution(new int[]{3, 0, 0, 1, 1});
     }
 
     public static int solution(int[] paper) {
@@ -24,11 +18,6 @@ public class Main2 {
                 break;
             }
         }
-
         return answer;
     }
-
-
-
-
 }

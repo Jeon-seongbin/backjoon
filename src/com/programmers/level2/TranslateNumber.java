@@ -14,7 +14,6 @@ public class TranslateNumber {
         Queue<Integer> queue = new LinkedList<>();
         HashSet<Integer> set = new HashSet<>();
 
-
         queue.add(x);
 
         while (!queue.isEmpty()) {

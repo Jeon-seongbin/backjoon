@@ -6,7 +6,6 @@ import java.util.Queue;
 
 public class TranslateNumber {
     public static void main(String[] args) {
-
     }
 
     public int solution(int x, int y, int n) {

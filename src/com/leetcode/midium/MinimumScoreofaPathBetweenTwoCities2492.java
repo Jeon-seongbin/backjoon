@@ -26,7 +26,6 @@ public class MinimumScoreofaPathBetweenTwoCities2492 {
             adj.add(new ArrayList<>());
         }
 
-
         for (int i = 0; i < roads.length; i++) {
             adj.get(roads[i][0]).add(new Pair(roads[i][1], roads[i][2]));
             adj.get(roads[i][1]).add(new Pair(roads[i][0], roads[i][2]));

@@ -42,4 +42,26 @@ public class MinimumPathSum64 {
 
         return dp[height - 1][width - 1];
     }
+
+    public static int minPathSum1(int[][] grid) {
+        int height = grid.length;
+        int width = grid[0].length;
+
+        for (int i = 1; i < width; i++) {
+            grid[0][i] += grid[0][i - 1];
+        }
+        for (int i = 1; i < height; i++) {
+            grid[i][0] += grid[i - 1][0];
+        }
+
+        for (int i = 1; i < height; i++) {
+            for (int j = 1; j < width; j++) {
+                int a = grid[i][j] + grid[i - 1][j];
+                int b = grid[i][j] + grid[i][j - 1];
+                grid[i][j] = Math.min(a, b);
+            }
+        }
+
+        return grid[height - 1][width - 1];
+    }
 }

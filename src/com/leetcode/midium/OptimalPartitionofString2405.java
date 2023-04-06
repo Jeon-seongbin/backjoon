@@ -12,7 +12,7 @@ public class OptimalPartitionofString2405 {
         int count = 0;
         Set<Character> set = new HashSet<>();
         for (char c : s.toCharArray()) {
-            if (set.contains(c)) {
+            if (set.contains(c)) { 
                 set.clear();
                 count++;
             }

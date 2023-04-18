@@ -7,13 +7,14 @@ public class BigNumber1 {
     }
 
     public static int[] solution(int[] numbers) {
-
         int[] result = new int[numbers.length];
         for (int i = 0; i < numbers.length; i++) {
             result[i] = -1;
         }
 
         Stack<Integer> stack = new Stack<>();
+
+        // index
         stack.push(0);
 
         for (int i = 1; i < numbers.length; i++) {
@@ -21,12 +22,10 @@ public class BigNumber1 {
                 stack.push(i);
             }
 
-            while (!stack.empty() && numbers[stack.peek()] < numbers[i]) {
+            while (!stack.isEmpty() && numbers[stack.peek()] < numbers[i]) {
                 result[stack.peek()] = numbers[i];
                 stack.pop();
             }
-
-            stack.push(i);
         }
         return result;
     }

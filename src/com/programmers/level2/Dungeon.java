@@ -10,25 +10,30 @@ public class Dungeon {
         });
     }
 
+
+    public static int answer = 0;
+
     public static int solution(int k, int[][] dungeons) {
-        int answer = -1;
-
         boolean[] isVisited = new boolean[dungeons.length];
-        answer = sol(k, dungeons, isVisited, 0, answer);
-
+        dfs(dungeons, isVisited, k, 0);
         return answer;
     }
 
-
-    public static int sol(int k, int[][] dungeons, boolean[] isVisited, int count, int answer) {
+    public static void dfs(int[][] dungeons, boolean[] isVisited, int pirodo, int count) {
 
         for (int i = 0; i < dungeons.length; i++) {
-            if (!isVisited[i] && dungeons[i][0] <= k) {
-                isVisited[i] = true;
-                answer = sol(k - dungeons[i][1], dungeons, isVisited, count + 1, answer);
-                isVisited[i] = false;
+            if (isVisited[i]) {
+                continue;
             }
+            if (pirodo < dungeons[i][0]) {
+                continue;
+            }
+
+            isVisited[i] = true;
+            dfs(dungeons, isVisited, pirodo - dungeons[i][1], count + 1);
+            isVisited[i] = false;
         }
-        return Math.max(answer, count);
+
+        answer = Math.max(count, answer);
     }
 }

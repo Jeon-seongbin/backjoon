@@ -20,7 +20,6 @@ public class BracketRotation {
 
             Stack<Character> bigBracket = new Stack<>();
 
-
             boolean ispushed = false;
             for (int j = 0; j < newS.length(); j++) {
                 ispushed = false;
@@ -53,7 +52,7 @@ public class BracketRotation {
                 answer++;
             }
         }
-        
+
         return answer;
     }
 

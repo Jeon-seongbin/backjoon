@@ -17,12 +17,8 @@ public class MinimumSizeSubarraySum209 {
             while (target <= sum) {
                 result = Math.min(start - end, result);
                 sum -= nums[end++];
-
             }
-
-
         }
-
         return result == Integer.MAX_VALUE ? 0 : result;
     }
 }

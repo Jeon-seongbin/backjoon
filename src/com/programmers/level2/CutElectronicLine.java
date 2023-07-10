@@ -9,7 +9,6 @@ public class CutElectronicLine {
         solution(4, new int[][]{
                 {1, 2}, {2, 3}, {3, 4}
         });
-
     }
 
     public static int solution(int n, int[][] wires) {
@@ -63,13 +62,12 @@ public class CutElectronicLine {
 
                     }
                 }
-
             }
+
             if (2 <= electricPoint.size()) {
                 int res = Math.abs(electricPoint.get(0) - electricPoint.get(1));
                 answer = Math.min(res, answer);
             }
-
         }
 
         return answer == Integer.MAX_VALUE ? 0 : answer;

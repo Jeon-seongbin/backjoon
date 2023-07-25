@@ -8,43 +8,45 @@ public class DivideNumberCard {
     public static int solution(int[] arrayA, int[] arrayB) {
         int answer = 0;
 
-        int arrayAGcd = arrayA[0];
-        int arrayBGcd = arrayB[0];
+        int a = arrayA[0];
+        int b = arrayB[0];
+
         for (int i = 1; i < arrayA.length; i++) {
-            arrayAGcd = gcd(arrayAGcd, arrayA[i]);
-            arrayBGcd = gcd(arrayBGcd, arrayB[i]);
+            a = gcd(a, arrayA[i]);
+            b = gcd(b, arrayB[i]);
         }
 
-        if (!isDevided(arrayA, arrayBGcd)) {
-            if (answer < arrayBGcd) {
-                answer = arrayBGcd;
+        if (isDivided(arrayA, b)) {
+            if (answer < b) {
+                answer = b;
             }
         }
 
-        if (!isDevided(arrayB, arrayAGcd)) {
-            if (answer < arrayAGcd) {
-                answer = arrayAGcd;
+        if (isDivided(arrayB, a)) {
+            if (answer < a) {
+                answer = a;
             }
         }
+
         return answer;
-    }
-
-    public static boolean isDevided(int[] array, int gcd) {
-        for (int a : array) {
-            if (a % gcd == 0) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public static int gcd(int n, int m) {
         int r;
-        while (m > 0) {
+        while (0 < m) {
             r = n % m;
             n = m;
             m = r;
         }
         return n;
+    }
+
+    static boolean isDivided(int[] arrays, int target) {
+        for (int array : arrays) {
+            if (array % target == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

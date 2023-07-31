@@ -9,7 +9,6 @@ public class EssenceTriangle {
 
     public static int solution(int[][] triangle) {
         int answer = 0;
-        
         for (int i = 1; i < triangle.length; i++) {
             triangle[i][0] += triangle[i - 1][0];
         }

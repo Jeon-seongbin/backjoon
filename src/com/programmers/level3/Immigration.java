@@ -6,7 +6,7 @@ public class Immigration {
     public static long solution(int n, int[] times) {
         long answer = 0;
         Arrays.sort(times);
-        long start = 0;
+        long start = 1;
         long end = times[times.length - 1] * (long) n;
 
         while (start <= end) {
@@ -16,7 +16,7 @@ public class Immigration {
             for (int time : times) {
                 tempTime += mid / time;
                 // mid : 모든 심사관들에게 주어진 시간이다. 따라서 tempTime 은 모든 심사관들이 mid분 동안 심사한 사람의 수가 된다.
-                // mid 시간 동안 모든 사람이 심사 가능한지를 계산한다
+                // mid 시간 동안 모든 사람이 심사 가능한 처리 횟수
 
                 // 입국 심사 1칸에 걸리는 시간
                 // mid 가 60 일때 7, 10 계산결과는 4, 3 -> timeTemp -> 7

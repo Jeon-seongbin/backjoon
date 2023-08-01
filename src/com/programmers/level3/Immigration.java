@@ -22,7 +22,7 @@ public class Immigration {
                 // mid 가 60 일때 7, 10 계산결과는 4, 3 -> timeTemp -> 7
                 // 사람수가 6명인데 7명 가능하다고 떠서 mid 값을 줄인다
             }
-            
+
             if (tempTime >= n) {
                 end = mid - 1;
 

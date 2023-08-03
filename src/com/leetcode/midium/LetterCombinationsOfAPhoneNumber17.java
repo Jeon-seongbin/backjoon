@@ -37,12 +37,15 @@ public class LetterCombinationsOfAPhoneNumber17 {
             return;
         }
 
-        // 숫자로부터 문자열을 구함
+        // 숫자로부터 현재 인덱스의 문자열을 구함
         String str = map.get(digit.charAt(index));
 
         for (int i = 0; i < str.length(); i++) {
             sb.append(str.charAt(i));
+
+            // 현재 인덱스에서 + 1 한 게 포인트
             helper(digit, index + 1, map, sb, result);
+
             sb.deleteCharAt(sb.length() - 1);
         }
     }

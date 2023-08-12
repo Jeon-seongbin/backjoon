@@ -12,7 +12,7 @@ public class Combinations77 {
 
     public void helper(int startIndex, List<List<Integer>> result, List<Integer> combination, int n, int k) {
         if (combination.size() == k) {
-            result.add(new ArrayList<>(a));
+            result.add(new ArrayList<>(combination));
             return;
         }
 

@@ -27,18 +27,16 @@ public class Stock {
         Stack<Integer> stack = new Stack<>();
 
         for (int i = 0; i < prices.length; i++) {
-
             while (!stack.isEmpty() && prices[i] < prices[stack.peek()]) {
-                int index = stack.pop();
-                dp[index] = i - index;
+                int nowIndex = stack.pop();
+                dp[nowIndex] = i - nowIndex;
             }
-
             stack.add(i);
         }
 
         while (!stack.isEmpty()) {
-            dp[stack.peek()] = prices.length - stack.peek() - 1;
-            stack.pop();
+            int nowIndex = stack.pop();
+            dp[nowIndex] = prices.length - 1 - nowIndex;
         }
 
         return dp;

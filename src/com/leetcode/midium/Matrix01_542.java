@@ -6,46 +6,45 @@ import java.util.Queue;
 
 public class Matrix01_542 {
 
-    public static void main(String[] args) {
-        int[][] input = new int[][]{{1, 0, 1, 1, 0, 0, 1, 0, 0, 1}, {0, 1, 1, 0, 1, 0, 1, 0, 1, 1}, {0, 0, 1, 0, 1, 0, 0, 1, 0, 0}, {1, 0, 1, 0, 1, 1, 1, 1, 1, 1}, {0, 1, 0, 1, 1, 0, 0, 0, 0, 1}, {0, 0, 1, 0, 1, 1, 1, 0, 1, 0}, {0, 1, 0, 1, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 1, 1, 1, 1, 0, 1}, {1, 1, 1, 1, 1, 1, 1, 0, 1, 0}, {1, 1, 1, 1, 0, 1, 0, 0, 1, 1}};
-        updateMatrix(input);
-    }
-
     public static int[][] updateMatrix(int[][] mat) {
-        Queue<Point> queue = new LinkedList<>();
-
         int height = mat.length;
         int width = mat[0].length;
-
         int[] dx = {1, 0, -1, 0};
         int[] dy = {0, 1, 0, -1};
 
+        Queue<Point> q = new LinkedList<>();
+
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (mat[i][j] == 0) { // We will check 0 side
-                    queue.add(new Point(i, j, 0));
-                } else {
-                    mat[i][j] = -1; // -1 not changed (1 will change to -1)
-
+                if (mat[i][j] == 0) {
+                    q.add(new Point(i, j, 0));
+                    continue;
                 }
+                mat[i][j] = -1;
             }
         }
 
-        while (!queue.isEmpty()) {
-            Point now = queue.poll();
+        while (!q.isEmpty()) {
+            Point nowPoint = q.poll();
             for (int i = 0; i < 4; i++) {
-                int newX = now.x + dx[i];
-                int newY = now.y + dy[i];
+                int newX = nowPoint.x + dx[i];
+                int newY = nowPoint.y + dy[i];
+
                 if (newX < 0 || height <= newX || newY < 0 || width <= newY || mat[newX][newY] != -1) {
-                    // if changed
                     continue;
                 }
-                mat[newX][newY] = now.level + 1; // change level
-                queue.add(new Point(newX, newY, now.level + 1)); // add queue for check next -1 inside level
+
+                q.add(new Point(newX, newY, nowPoint.level + 1));
+                mat[newX][newY] = nowPoint.level + 1;
             }
         }
 
         return mat;
+    }
+
+    public static void main(String[] args) {
+        int[][] input = new int[][]{{1, 0, 1, 1, 0, 0, 1, 0, 0, 1}, {0, 1, 1, 0, 1, 0, 1, 0, 1, 1}, {0, 0, 1, 0, 1, 0, 0, 1, 0, 0}, {1, 0, 1, 0, 1, 1, 1, 1, 1, 1}, {0, 1, 0, 1, 1, 0, 0, 0, 0, 1}, {0, 0, 1, 0, 1, 1, 1, 0, 1, 0}, {0, 1, 0, 1, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 1, 1, 1, 1, 0, 1}, {1, 1, 1, 1, 1, 1, 1, 0, 1, 0}, {1, 1, 1, 1, 0, 1, 0, 0, 1, 1}};
+        updateMatrix(input);
     }
 /*
 // TLE

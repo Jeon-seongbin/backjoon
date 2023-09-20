@@ -18,12 +18,12 @@ public class PerformanceEvaluation {
 
         for (int[] score : scores) {
             // 내 앞에 동료평가점수가 나보다 높은사람이 한명이라도 있으면 탈락
-            // 근무태도 동점자의 경우 동료평가 오름차순 하였으므로 고려하지 않아도 됨
             if (score[1] < maxScore) {
                 // 탈락대상
                 if (score.equals(wanHo))
                     return -1;
             } else {
+                // 근무태도 동점자의 경우 동료평가 오름차순 하였으므로 고려하지 않아도 됨
                 // 인센대상
                 maxScore = Math.max(maxScore, score[1]);
                 if (score[0] + score[1] > wanHoSum)

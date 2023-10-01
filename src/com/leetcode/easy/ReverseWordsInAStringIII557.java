@@ -5,7 +5,7 @@ public class ReverseWordsInAStringIII557 {
         reverseWords("Let's take LeetCode contest");
     }
 
-    public static String reverseWords(String s) {
+    public static String reverseWords2(String s) {
         String[] words = s.split(" ");
 
         for (int i = 0; i < words.length; i++) {
@@ -24,5 +24,35 @@ public class ReverseWordsInAStringIII557 {
             }
         }
         return s;
+    }
+
+    public static String reverseWords(String s) {
+        char[] arr = s.toCharArray();
+
+        int start = 0;
+        int end = 0;
+        while (end < arr.length) {
+
+            while (end < arr.length && arr[end] != ' ') {
+                end++;
+            }
+
+            int endWord = end - 1;
+
+            while (start < endWord) {
+                char temp = arr[start];
+                arr[start] = arr[endWord];
+                arr[endWord] = temp;
+
+                start++;
+                end--;
+                endWord--;
+            }
+
+            start = end + 1;
+            end = start;
+        }
+
+        return new String(arr);
     }
 }

@@ -5,20 +5,15 @@ public class NumberOfGoodPairs1512 {
         numIdenticalPairs(new int[]{1, 1, 1, 1});
     }
 
-
     public static int numIdenticalPairs(int[] nums) {
         int count = 0;
         for (int i = 0; i < nums.length; i++) {
             count = backtracking(i, nums, 1, count);
-
         }
-
-
         return count;
     }
 
     public static int backtracking(int nowindex, int[] nums, int nowCount, int count) {
-
         if (nowCount == 2) {
             return count;
         }
@@ -29,8 +24,6 @@ public class NumberOfGoodPairs1512 {
             }
             count = backtracking(i, nums, nowCount + 1, count);
         }
-
         return count;
-
     }
 }

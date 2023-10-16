@@ -8,6 +8,19 @@ public class PascalsTriangleII119 {
         generate(3);
     }
 
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> result = new ArrayList<>();
+
+        for (int i = 1; i <= rowIndex; i++) {
+            result.add(1);
+            for (int j = i - 1; j > 0; j--) {
+                result.set(j, result.get(j) + result.get(j - 1));
+            }
+        }
+
+        return result;
+    }
+
     public static List<Integer> generate(int rowIndex) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
 
@@ -33,7 +46,6 @@ public class PascalsTriangleII119 {
         if (rowIndex == 2) {
             return result.get(2);
         }
-
 
 
         for (int i = 3; i < 33; i++) {

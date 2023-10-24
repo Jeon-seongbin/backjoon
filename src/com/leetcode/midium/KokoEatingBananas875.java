@@ -1,21 +1,15 @@
 package com.leetcode.midium;
 
+import java.util.Arrays;
+
 public class KokoEatingBananas875 {
-    public static void main(String[] args) {
-
-    }
-
-    public int minEatingSpeed(int[] piles, int h) {
+    public static int minEatingSpeed(int[] piles, int h) {
         int left = 1;
-        int right = 0;
-
-        for (int p : piles) {
-            right = Math.max(right, p);
-        }
+        int right = Arrays.stream(piles).max().getAsInt();
 
         while (left < right) {
             int mid = (left + right) / 2;
-            if (check(piles, mid, h)) {
+            if (binarySearch(piles, mid, h)) {
                 right = mid;
             } else {
                 left = mid + 1;
@@ -25,16 +19,19 @@ public class KokoEatingBananas875 {
         return left;
     }
 
-    public boolean check(int[] piles, int mid, int h) {
-        int hours = 0;
+    public static boolean binarySearch(int[] piles, int mid, int h) {
+        int a = 0;
         for (int p : piles) {
-            int time = p / mid;
-            hours += time;
-            if (p % mid != 0) {
-                hours++;
+
+            a += p / mid;
+            if( p % mid != 0){
+                a++;
             }
         }
-        return hours <= h;
+        return a <= h;
     }
 
+    public static void main(String[] args) {
+        minEatingSpeed(new int[]{3, 6, 7, 11}, 8);
+    }
 }

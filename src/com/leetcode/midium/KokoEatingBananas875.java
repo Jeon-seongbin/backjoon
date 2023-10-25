@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class KokoEatingBananas875 {
     public static int minEatingSpeed(int[] piles, int h) {
-        int left = 1;
+        int left = Arrays.stream(piles).min().getAsInt();
         int right = Arrays.stream(piles).max().getAsInt();
 
         while (left < right) {

@@ -3,33 +3,27 @@ package com.codingTest.lobot;
 import java.util.*;
 
 public class Main {
-
-
     public static String longestCommonPrefix(List<String> words) {
-        if (words == null) {
+        if (words == null || words.isEmpty()) {
             return "";
         }
 
-        if (words.isEmpty()) {
-            return "";
-        }
+       Collections.sort(words);
 
-        if (words.get(0).isEmpty()) {
-            return "";
-        }
+        String first = words.get(0);
+        String last = words.get(words.size() - 1);
 
-
-        String prefix = words.get(0);
-        for (int i = 1; i < words.size(); i++) {
-            while (words.get(i).indexOf(prefix) != 0) {
-                prefix = prefix.substring(0, prefix.length() - 1);
-                if (prefix.isEmpty()) {
-                    return "";
-                }
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < first.length() && i < last.length(); i++) {
+            if (first.charAt(i) != last.charAt(i)) {
+                break;
             }
+            result.append(first.charAt(i));
         }
-        return prefix;
+
+        return result.toString();
     }
+
 
     public static void main(String[] args) {
         System.out.println(longestCommonPrefix(Arrays.asList("flower", "flow", "flight")));   // -> "fl"
